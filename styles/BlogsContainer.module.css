@@ -1,0 +1,43 @@
+.blog {
+    padding: 0rem;
+    display: flex;
+    padding-bottom: 1rem;
+    /* background-color: aqua; */
+}
+
+.blogDetail {
+    display: inline;
+    position: relative;
+    width: 100%;
+}
+
+
+.linkTitle {
+    font-size: 25px;
+}
+
+.thumbnail {
+    /* width: 300px; */
+    /* height: 200px; */
+    /* border-radius: 12px; */
+    margin-right: 1rem;
+}
+
+.blogs {
+    margin-top: 2rem;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1250px;
+    margin-inline: auto;
+}
+
+.author {
+    /* font-size: 16px; */
+    cursor: pointer;
+    padding-bottom: 2px;
+    font-weight: 400;
+    border-bottom: 1px solid gray;
+}
