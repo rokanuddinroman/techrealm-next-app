@@ -1,0 +1,30 @@
+.logo {
+    font-family: 'Antonio', sans-serif;
+    font-size: 30px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.navbar_container {
+    margin-inline: auto;
+    max-width: 1250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.bannerNav {}
+
+.bannerNav a {
+    font-weight: 500;
+    /* font-size: 17px; */
+    padding: 5px;
+    margin-left: 8px;
+}
+
+.active {
+    color: #EB002E !important;
+}

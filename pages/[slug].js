@@ -2,33 +2,55 @@ import { useRouter } from 'next/router';
 import Head from 'next/dist/shared/lib/head';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import styles from '../styles/SIngleBlog.module.css'
+import Link from 'next/link';
 
 const Post = () => {
 
     const router = useRouter();
     const { slug } = router.query;
 
-    const [post, setPost] = useState({})
+    const [posts, setPosts] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:3000/api/getblog?slug=${slug}`)
+        fetch(`https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=7b399350754a4e679e8549834920e31e`)
             .then(res => res.json())
-            .then(data => setPost(data))
+            .then(data => setPosts(data))
     }, [])
+
+    const post = posts?.articles?.find(p => p.title.replace(/ /g, "-") === slug)
 
     return (
         <div>
-            <div className="max-w-[800px] mx-auto">
-                <h1 className='mt-10 text-[30px] font-bold text-center'>{post.title}</h1>
-                <p className='text-center mb-4'>{post.publisher} - {post.readTime}</p>
-                <div className="flex justify-center">
-                    <Image
-                        src={post.thumbnail}
-                        alt="hero"
-                        height={270}
-                        width={480}
-                    />
+            <div className={styles.container}>
+                <div>
+                    <h1 className={styles.title}>{post?.title}</h1>
+                    <p className={styles.extra}>{post?.author} - {post?.publishedAt}</p>
+                    {
+                        post?.urlToImage &&
+                        <div className={styles.thumbnail}>
+                            <Image
+                                src={post?.urlToImage}
+                                alt="hero"
+                                height={270}
+                                width={480}
+                            />
+                        </div>
+                    }
+                    <p className={styles.content}>{post?.content}</p>
                 </div>
-                <p className='mt-4'>{post.content}</p>
+                <div className={styles.sidebar}>
+                    <h2>More Posts like this</h2>
+                    {
+                        posts?.articles?.slice(0, 5).map(post => <div key={post.index}>
+                            <h4>
+                                <Link href={`/${post?.title.replace(/ /g, "-")}`}>
+                                    <span className='fancy_hover'>{post.title}</span>
+                                </Link>
+                            </h4>
+                        </div>
+                        )
+                    }
+                </div>
             </div>
         </div>
     );

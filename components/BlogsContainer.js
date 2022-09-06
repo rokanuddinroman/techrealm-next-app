@@ -7,43 +7,40 @@ import Link from 'next/link';
 const BlogsContainer = () => {
     const [blogs, setBlogs] = useState([])
     useEffect(() => {
-        fetch("blogs.json")
+        fetch("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=7b399350754a4e679e8549834920e31e")
             .then(res => res.json())
             .then(data => setBlogs(data))
     }, [])
-    // const styles = {
-    //     wrapper: "mt-4",
-    //     content: "max-w-[1300px] mx-auto",
-    //     blogDetail: "",
-    //     blogDetailh1: "",
-    //     thumbnail: "w-[200px] mr-4",
-    // }
+    console.log(blogs.articles)
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.content}>
                 <h1 className='text-[25px] font-semibold'>Latest Blogs</h1>
                 <div className={styles.blogs}>
-                    {blogs.map(blog => {
+                    {blogs.articles && blogs.articles.map(blog => {
                         return <div className={styles.blog} key={0}>
                             <div className={styles.thumbnail}>
                                 <Image
-                                    src={blog.thumbnail}
-                                    alt={blog.title}
+                                    src={blog?.urlToImage}
+                                    alt={blog?.title}
                                     height={216}
                                     width={384}
                                 ></Image>
                             </div>
                             <div className={styles.blogDetail}>
-                                <h1 className="text-[25px] font-semibold hover:text-blue-700">
-                                    <Link href={`/${blog.slug}`}>{blog.title}</Link>
-                                </h1>
-                                <p className={styles.blogDetailp}>{blog.content.slice(0, 120)}</p>
-                                <p className='absolute bottom-[10px] text-[14px]'>
-                                    Published by <Link href={`/${blog.slug}`}>
-                                        <span className={styles.author}>{blog.publisher}</span>
+                                <h1 className={`${styles.linkTitle}`}>
+                                    <Link href={`/${blog?.title.replace(/ /g, "-")}`}>
+                                        <span className='fancy_hover'>{blog?.title}</span>
                                     </Link>
+                                </h1>
+                                <p className={styles.publisher}>
+                                    Published by <Link href={`/${blog?.title.replace(/ /g, "-")}`}>
+                                        <span className={styles.author}>{blog?.author}</span>
+                                    </Link>・<span>{blog?.publishedAt}</span>
                                 </p>
-                                <p className='absolute right-0'>{blog.readTime}</p>
+                                <p className={styles.description}>{blog?.description.slice(0, 420)}</p>
+                                <p className=''></p>
                             </div>
                         </div>
                     })}

@@ -1,0 +1,15 @@
+.container {
+    margin-inline: auto;
+    max-width: 1250px;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 300px;
+}
+
+.thumbnail img {
+    float: center;
+}
+
+.sidebar h2 {
+    padding-top: 0.5rem;
+}

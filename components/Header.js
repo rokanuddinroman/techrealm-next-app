@@ -2,29 +2,43 @@ import React from 'react';
 import Image from 'next/image'
 import Logo from '../static/857528878.png'
 import Link from 'next/link';
+import styles from '../styles/Header.module.css'
+import { useRouter } from "next/router";
 
 const Header = () => {
-    const styles = {
-        wrapper: " border-b-[1px] border-gray-200",
-        content: "max-w-[1300px] flex justify-between mx-auto",
-        logoContainer: "flex items-center flex-start py-2",
-        logo: "",
-        bannerNav: "flex cursor-pointer items-center space-x-5",
-        navLink: "font-bold"
-    }
-
+    const router = useRouter();
     return (
         <div className={styles.wrapper}>
-            <div className={styles.content}>
+            <div className={styles.navbar_container}>
                 <div className={styles.logoContainer}>
-                    <Image className={styles.logo} src={Logo} />
+                    <h className='logo'>TECH<span>B</span>OLT</h>
                 </div>
                 <div className={styles.bannerNav}>
-                    <Link className={styles.navLink} href="/">Home</Link>
-                    <Link className={styles.navLink} href="/Technology">Technology</Link>
-                    <Link className={styles.navLink} href="/Apps">Applications</Link>
-                    <Link className={styles.navLink} href="/Games">Games</Link>
-                    <Link className={styles.navLink} href="/About">About</Link>
+                    <Link className={styles.navLink} href="/">
+                        <a className={router.pathname == "/" ? "active" : ""}>
+                            Home
+                        </a>
+                    </Link>
+                    <Link className={styles.navLink} href="/technology">
+                        <a className={router.pathname == "/technology" ? "active" : ""}>
+                            Technology
+                        </a>
+                    </Link>
+                    <Link className={styles.navLink} href="/apps">
+                        <a className={router.pathname == "/apps" ? "active" : ""}>
+                            Apps
+                        </a>
+                    </Link>
+                    <Link className={styles.navLink} href="/games">
+                        <a className={router.pathname == "/games" ? "active" : ""}>
+                            Games
+                        </a>
+                    </Link>
+                    <Link className={styles.navLink} href="/about">
+                        <a className={router.pathname == "/about" ? "active" : ""}>
+                            About
+                        </a>
+                    </Link>
                 </div>
             </div>
         </div>

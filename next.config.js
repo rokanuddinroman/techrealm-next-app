@@ -8,7 +8,7 @@ module.exports = {
   nextConfig,
   images: {
     domains: [
-      'cdn.vox-cdn.com',
+      'techcrunch.com',
     ],
   }
 }
