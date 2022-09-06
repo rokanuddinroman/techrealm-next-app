@@ -9,7 +9,7 @@ const Footer = () => {
         <div className={styles.wrapper}>
             <div className={styles.footer_container}>
                 <div className={styles.logoContainer}>
-                    <h1 className='logo'>TECH<span>B</span>OLT</h1>
+                    <h1 className='logo'>TECH<span>R</span>EALM</h1>
                     <p>Techbolt is your complete guide to computers, peripherals and upgrades.</p>
                 </div>
                 <div className={styles.footer_column}>

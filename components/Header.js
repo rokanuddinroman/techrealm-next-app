@@ -11,7 +11,7 @@ const Header = () => {
         <div className={styles.wrapper}>
             <div className={styles.navbar_container}>
                 <div className={styles.logoContainer}>
-                    <h className='logo'>TECH<span>B</span>OLT</h>
+                    <h className='logo'>TECH<span>R</span>EALM</h>
                 </div>
                 <div className={styles.bannerNav}>
                     <Link className={styles.navLink} href="/">
